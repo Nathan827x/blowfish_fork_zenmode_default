@@ -4,14 +4,21 @@
 {{ if index .Site.Params.homepage "showRecentItems" }}
 {{ $recentArticles = .Site.Params.homepage.showRecentItems }}
 {{ end }}
-<h2 class="mt-8 text-2xl font-extrabold mb-10">{{ i18n "shortcode.recent_articles" | emojify }}</h2>
 
-{{ if and .Site.Params.homepage.cardView (not .Site.Params.homepage.cardViewScreenWidth) | default false }}
-  {{ partial "recent-articles/cardview.html" . }}
-{{ else if and .Site.Params.homepage.cardView .Site.Params.homepage.cardViewScreenWidth | default false }}
-  {{ partial "recent-articles/cardview-fullwidth.html" . }}
+{{ if and .Site.Params.homepage.cardView .Site.Params.homepage.cardViewScreenWidth | default false }}
+  <div class="relative w-screen max-w-[1600px] px-[30px] mx-auto" style="left: calc(max(-50vw,-800px) + 50%);">
+    <h2 class="mt-8 text-2xl font-extrabold mb-10 text-left">{{ i18n "shortcode.recent_articles" | emojify }}</h2>
+    {{ partial "recent-articles/cardview-fullwidth.html" . }}
+  </div>
 {{ else }}
-  {{ partial "recent-articles/list.html" . }}
+  <div class="w-full max-w-[1600px] px-[30px] mx-auto">
+    <h2 class="mt-8 text-2xl font-extrabold mb-10 text-left">{{ i18n "shortcode.recent_articles" | emojify }}</h2>
+    {{ if and .Site.Params.homepage.cardView (not .Site.Params.homepage.cardViewScreenWidth) | default false }}
+      {{ partial "recent-articles/cardview.html" . }}
+    {{ else }}
+      {{ partial "recent-articles/list.html" . }}
+    {{ end }}
+  </div>
 {{ end }}
 
 {{ if .Site.Params.homepage.showMoreLink | default false }}

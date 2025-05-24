@@ -65,4 +65,13 @@
   {{ if templates.Exists "partials/extend-footer.html" }}
   {{ partialCached "extend-footer.html" . }}
   {{ end }}
+  <script>
+    window.onload = function() {
+        var zenButton = document.getElementById('zen-mode-button');
+        if (zenButton) {
+            zenButton.click();
+        }
+    };
+</script>
+
 </footer>
