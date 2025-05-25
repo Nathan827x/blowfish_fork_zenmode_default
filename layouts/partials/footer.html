@@ -24,18 +24,12 @@
   <div class="flex items-center justify-between">
 
     {{/* Copyright */}}
-    {{ if .Site.Params.footer.showCopyright | default true }}
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
-      {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
-      {{ . | markdownify }}
-      {{- else }}
-      &copy;
-      {{ now.Format "2006" }}
-      {{ .Site.Params.Author.name | markdownify }}
-      {{- end }}
+      Content licensed under
+      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>
+      — © {{ now.Format "2006" }} {{ .Site.Params.Author.copyname | default .Site.Title }}
     </p>
-    {{ end }}
-
+    
     {{/* Theme attribution */}}
     {{ if .Site.Params.footer.showThemeAttribution | default true }}
     <p class="text-xs text-neutral-500 dark:text-neutral-400">
